@@ -11,12 +11,6 @@ RETURNING *;
 SELECT * FROM entries
 WHERE id = $1 LIMIT 1;
 
--- name: ListEntries :many
-SELECT * FROM entries
-ORDER BY account_id
-LIMIT $1
-OFFSET $2;
-
 -- name: UpdateEntrty :one
 UPDATE entries 
 SET amount = $1
@@ -26,3 +20,9 @@ RETURNING *;
 -- name: DeleteEntry :exec
 DELETE FROM entries
 WHERE id = $1;
+
+-- name: ListEntries :many
+SELECT * FROM entries
+ORDER BY account_id
+LIMIT $1
+OFFSET $2;
